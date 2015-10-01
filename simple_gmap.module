@@ -1,8 +1,6 @@
 <?php
-
 /**
  * @file
- * Simple Google Maps module
  *
  * Provides a Google Maps link/map formatter for simple Text fields. Note that
  * this is just a field formatter for Text fields, not a field. See README.txt
@@ -253,7 +251,7 @@ function simple_gmap_field_formatter_settings_form($field, $instance, $view_mode
     '#title' => t('Language'),
     '#type' => 'textfield',
     '#default_value' => check_plain($settings['langcode']),
-    '#description' => t("Enter a two-letter language code that Google Maps can recognize, or enter 'page' (without the quotes) to use the current page's Drupal language code"),
+    '#description' => t("Enter a two-letter language code that Google Maps can recognize, or enter 'page' (without the quotes) to use the current page's language code"),
   );
 
   return $element;
