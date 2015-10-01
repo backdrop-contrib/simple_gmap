@@ -2,4 +2,4 @@ name = Simple Google Maps
 description = Provides a Google Maps link/map formatter for simple Text fields
 backdrop = 1.x
 type = module
-project = Fields
+package = Fields
