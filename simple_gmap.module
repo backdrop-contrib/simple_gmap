@@ -103,7 +103,7 @@ function simple_gmap_field_formatter_view($entity_type, $entity, $field, $instan
   if (!in_array($map_type, array('m', 'k', 'h', 'p'))) {
     $map_type = 'm';
   }
-  
+
   foreach($items as $delta => $item) {
     $url_value = urlencode(check_plain($item['value']));
     $address_value = check_plain($item['value']);
