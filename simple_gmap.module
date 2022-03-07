@@ -58,7 +58,7 @@ function simple_gmap_theme($existing, $type, $theme, $path) {
         'map_type' => 'm',
         'langcode' => 'en',
       ),
-      'template' => 'simple-gmap-output',
+      'template' => 'templates/simple-gmap-output',
     ),
   );
 }
@@ -109,22 +109,29 @@ function simple_gmap_field_formatter_view($entity_type, $entity, $field, $instan
     $address_value = check_plain($item['value']);
     $address = $text ? $address_value : '';
 
-    $element[$delta] = array('#markup' => theme('simple_gmap_output', array(
-          'include_map' => $embed,
-          'include_static_map' => $static,
-          'include_link' => $link,
-          'include_text' => $text,
-          'width' => $width,
-          'height' => $height,
-          'url_suffix' => $url_value,
-          'zoom' => $zoom_level,
-          'information_bubble' => $bubble,
-          'link_text' => ($link_text == 'use_address') ? $address_value : $link_text,
-          'address_text' => $address,
-          'map_type' => $map_type,
-          'langcode' => $lang_to_use,
-          'static_map_type' => $static_map_types[$map_type],
-        )));
+    $element[$delta] = array(
+      '#markup' => theme('simple_gmap_output', array(
+        'include_map' => $embed,
+        'include_static_map' => $static,
+        'include_link' => $link,
+        'include_text' => $text,
+        'width' => $width,
+        'height' => $height,
+        'url_suffix' => $url_value,
+        'zoom' => $zoom_level,
+        'information_bubble' => $bubble,
+        'link_text' => ($link_text == 'use_address') ? $address_value : $link_text,
+        'address_text' => $address,
+        'map_type' => $map_type,
+        'langcode' => $lang_to_use,
+        'static_map_type' => $static_map_types[$map_type],
+      )),
+      '#attached' => array(
+        'css' => array(
+          backdrop_get_path('module', 'simple_gmap') . '/css/simple_gmap.css',
+        ),
+      ),
+    );
   }
 
   return $element;
@@ -146,6 +153,7 @@ function simple_gmap_field_formatter_settings_form($field, $instance, $view_mode
   $element['include_map'] = array(
     '#type' => 'checkbox',
     '#title' => t('Include embedded dynamic map'),
+    '#description' => t('Note that the dynamic map is responsive and width/height are not required'),
     '#default_value' => (int) $settings['include_map'],
   );
 
