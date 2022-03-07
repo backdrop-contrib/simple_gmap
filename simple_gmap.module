@@ -153,7 +153,7 @@ function simple_gmap_field_formatter_settings_form($field, $instance, $view_mode
   $element['include_map'] = array(
     '#type' => 'checkbox',
     '#title' => t('Include embedded dynamic map'),
-    '#description' => t('Note that the dynamic map is responsive and width/height are not required'),
+    '#description' => t('The dynamic map is responsive. Width and height are not required.'),
     '#default_value' => (int) $settings['include_map'],
   );
 
@@ -166,14 +166,14 @@ function simple_gmap_field_formatter_settings_form($field, $instance, $view_mode
   $element['iframe_width'] = array(
     '#title' => t('Width of embedded map'),
     '#type' => 'textfield',
-    '#description' => t('Note that static maps only accept sizes in pixels'),
+    '#field_suffix' => t('pixels'),
     '#default_value' => check_plain($settings['iframe_width']),
   );
 
   $element['iframe_height'] = array(
     '#title' => t('Height of embedded map'),
     '#type' => 'textfield',
-    '#description' => t('Note that static maps only accept sizes in pixels'),
+    '#field_suffix' => t('pixels'),
     '#default_value' => check_plain($settings['iframe_height']),
   );
 
@@ -192,7 +192,7 @@ function simple_gmap_field_formatter_settings_form($field, $instance, $view_mode
     '#title' => t('Link text'),
     '#type' => 'textfield',
     '#default_value' => check_plain($settings['link_text']),
-    '#description' => t("Enter the text to use for the link to the map, or enter 'use_address' (without the quotes) to use the entered address text as the link text"),
+    '#description' => t('Text for the link to the map. Enter <em>use_address<em> to use the address for the text.'),
   );
 
   $element['generic_label'] = array(
@@ -256,10 +256,10 @@ function simple_gmap_field_formatter_settings_form($field, $instance, $view_mode
   );
 
   $element['langcode'] = array(
-    '#title' => t('Language'),
+    '#title' => t('Language code'),
     '#type' => 'textfield',
     '#default_value' => check_plain($settings['langcode']),
-    '#description' => t("Enter a two-letter language code that Google Maps can recognize, or enter 'page' (without the quotes) to use the current page's language code"),
+    '#description' => t("A two-letter language code that Google Maps can recognize. Enter <em>page</em> to use the current page's language code."),
   );
 
   return $element;
